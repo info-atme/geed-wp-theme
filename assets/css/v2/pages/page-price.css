@@ -1,0 +1,8 @@
+@media (min-width: 700px) {
+	.p-price-wide div {
+		grid-template-columns: 13em minmax(0, 1fr);
+	}
+}
+.g-callout + .g-price {
+	margin-top: 24px;
+}

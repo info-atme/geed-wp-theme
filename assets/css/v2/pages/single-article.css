@@ -1,0 +1,611 @@
+/**
+ * コラム記事・トレーニングメニュー詳細の枠（single.php / single-geed_menu.php）。
+ * 本文 .content-page__body の中は旧 main.css のまま。ここは枠だけ。
+ * body.geed-v2 は付かない（本文の旧スタイルを崩さないため）ので、文字の基本はここで持つ。
+ */
+.p-article {
+	padding-top: 32px;
+	color: var(--g-ink);
+	font-family: var(--g-font);
+}
+
+.p-article__head .crumb {
+	max-width: none;
+	margin: 0 0 24px;
+	padding: 0;
+}
+
+.p-article__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 16px;
+	margin: 0;
+	font-size: var(--g-fs-small);
+}
+
+.p-article__meta time {
+	color: var(--g-muted);
+	font-family: var(--g-font-en);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+}
+
+.p-article__updated {
+	color: var(--g-muted);
+}
+
+.p-article__meta a {
+	color: var(--g-gold-text);
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.p-article__head .g-head__en {
+	margin: 0 0 8px;
+}
+
+.p-article__head h1 {
+	margin: 12px 0 0;
+	padding-bottom: 24px;
+	border-bottom: 2px solid var(--g-ink);
+	color: var(--g-ink);
+	font-family: var(--g-font);
+	font-size: 26px;
+	font-weight: 700;
+	line-height: 1.5;
+	text-align: left;
+}
+
+.p-article__media {
+	margin-top: 32px;
+}
+
+.p-article__media img {
+	width: 100%;
+	height: auto;
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.p-article__spec {
+	margin-top: 24px;
+}
+
+.p-article__body {
+	margin-top: 32px;
+	padding-bottom: 24px;
+}
+
+.p-article__extra {
+	padding-bottom: 56px;
+}
+
+.p-article__cautions {
+	margin-top: 40px;
+}
+
+.p-article__cautions h2 {
+	margin: 0 0 12px;
+	padding-top: 16px;
+	border-top: 2px solid var(--g-ink);
+	font-size: 20px;
+}
+
+.p-article__sup {
+	margin-top: 40px;
+}
+
+.p-article__sup-name {
+	margin: 4px 0;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+/* 関連記事: サムネイル＋日付＋タイトルの縦リスト */
+.p-related {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid var(--g-rule);
+}
+
+.p-related a {
+	display: grid;
+	grid-template-columns: 112px minmax(0, 1fr);
+	gap: 16px;
+	align-items: center;
+	padding-block: 16px;
+	border-bottom: 1px solid var(--g-rule);
+	color: var(--g-ink);
+	text-decoration: none;
+}
+
+.p-related img,
+.p-related__noimg {
+	display: block;
+	width: 112px;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	background: var(--g-rule);
+}
+
+.p-related__text {
+	display: grid;
+	gap: 4px;
+	font-weight: 700;
+	line-height: 1.6;
+}
+
+.p-related time {
+	color: var(--g-muted);
+	font-family: var(--g-font-en);
+	font-size: var(--g-fs-small);
+	font-weight: 600;
+}
+
+.p-related a:hover span span {
+	text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+	.p-article {
+		padding-top: 48px;
+	}
+
+	.p-article__head h1 {
+		font-size: 34px;
+	}
+
+	.p-related a {
+		grid-template-columns: 160px minmax(0, 1fr);
+		gap: 24px;
+	}
+
+	.p-related img,
+	.p-related__noimg {
+		width: 160px;
+	}
+}
+
+/* ---------------------------------------------------------------
+ * コラム記事の読みやすさ（2026-10-04 記事ページ改善・inc/article.php）
+ * ------------------------------------------------------------ */
+.p-article__byline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 16px;
+	margin: 12px 0 0;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+}
+
+.p-article__byline time {
+	font-family: var(--g-font-en);
+	font-weight: 600;
+	letter-spacing: 0.04em;
+}
+
+.p-article__byline a {
+	color: var(--g-ink);
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.p-article__lead {
+	margin-top: 32px;
+}
+
+/* この記事の答え */
+.p-answer {
+	padding: 20px 20px 4px;
+	border-left: 4px solid var(--g-gold);
+	background: var(--g-surface);
+}
+
+.p-answer__label {
+	margin: 0 0 8px;
+	color: var(--g-gold-text);
+	font-size: var(--g-fs-small);
+	font-weight: 700;
+}
+
+.p-answer p:not(.p-answer__label) {
+	margin: 0 0 16px;
+	font-size: 17px;
+	font-weight: 500;
+	line-height: 1.9;
+}
+
+/* 目次（追従させない。SPでは開閉できる） */
+.p-toc {
+	margin-top: 24px;
+	border: 1px solid var(--g-rule);
+	background: var(--g-surface);
+}
+
+.p-toc__title {
+	padding: 14px 20px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.p-toc__list {
+	margin: 0;
+	padding: 0 20px 16px 44px;
+	line-height: 1.7;
+}
+
+.p-toc__list li + li {
+	margin-top: 6px;
+}
+
+.p-toc__list a {
+	color: var(--g-ink);
+	text-decoration: underline;
+	text-decoration-color: var(--g-rule);
+	text-underline-offset: 3px;
+}
+
+.p-toc__list a:hover {
+	text-decoration-color: var(--g-gold);
+}
+
+/* 本文: 見出しは v2 と同じゴシック */
+.p-article__body.content-page__body h2 {
+	font-family: var(--g-font);
+	font-weight: 700;
+	scroll-margin-top: 88px;
+}
+
+.p-article__body.content-page__body h3 {
+	font-family: var(--g-font);
+	font-weight: 700;
+}
+
+.p-article__body.content-page__body p,
+.p-article__body.content-page__body li {
+	line-height: 1.95;
+}
+
+@media (max-width: 767px) {
+	.p-article__body.content-page__body h2 {
+		font-size: 22px;
+	}
+}
+
+/* 本文中の無料体験 */
+.p-inline-cta {
+	margin: 40px 0;
+	padding: 24px 20px;
+	background: var(--g-bg);
+	border-top: 2px solid var(--g-ink);
+}
+
+.p-inline-cta__title {
+	margin: 0 0 6px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.p-inline-cta__sub {
+	margin: 0 0 16px;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+}
+
+.p-inline-cta .g-actions__note {
+	margin-bottom: 0;
+}
+
+/* 旧 main.css の本文リンク色（.content-page__body a）がボタンに乗らないようにする */
+.content-page__body .p-inline-cta .g-btn {
+	text-decoration: none;
+}
+
+.content-page__body .p-inline-cta .g-btn--form {
+	color: var(--g-ink);
+}
+
+.content-page__body .p-inline-cta .g-btn--line {
+	color: #fff;
+}
+
+/* 監修者 */
+.p-sup {
+	margin-top: 40px;
+	padding: 24px 20px;
+	border: 1px solid var(--g-rule);
+	background: var(--g-surface);
+}
+
+.p-sup__label {
+	margin: 0 0 8px;
+	color: var(--g-gold-text);
+	font-size: var(--g-fs-small);
+	font-weight: 700;
+}
+
+.p-sup__name {
+	margin: 0;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.p-sup__name span {
+	margin-left: 12px;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+	font-weight: 500;
+}
+
+.p-sup__creds {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 8px;
+	margin: 12px 0;
+	padding: 0;
+	list-style: none;
+}
+
+.p-sup__creds li {
+	padding: 2px 10px;
+	border: 1px solid var(--g-rule);
+	font-size: 13px;
+}
+
+.p-sup__text {
+	margin: 0 0 12px;
+	font-size: var(--g-fs-small);
+}
+
+/* ==========================================================================
+   本文の標準装飾（2026-10-04）
+   原稿md（geed_post.py）と WP エディタ入力のどちらにも効くよう、要素セレクタで当てる。
+   記事の図解（tools/figs.py）と同じ語彙: 黒の角タイル・金の四角・二重罫・角丸なし
+   ========================================================================== */
+
+/* 強調: 金のマーカー */
+.content-page__body strong {
+	font-weight: 700;
+	color: var(--g-ink);
+	background: linear-gradient(transparent 62%, rgba(200, 169, 110, 0.38) 62%);
+	padding: 0 1px;
+}
+
+.content-page__body h4 {
+	margin: 28px 0 10px;
+	font-size: 17px;
+	font-weight: 700;
+	color: var(--g-ink);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.content-page__body h4::before {
+	content: "";
+	width: 10px;
+	height: 10px;
+	background: var(--g-gold);
+	flex: none;
+}
+
+.content-page__body hr {
+	margin: 40px 0;
+	border: 0;
+	border-top: 1px solid var(--g-rule);
+}
+
+/* --- 箇条書き: 面で囲み、金の四角マーカー --- */
+.content-page__body ul:not([class]),
+.content-page__body ul.wp-block-list {
+	list-style: none;
+	margin: 24px 0 28px;
+	padding: 18px 20px;
+	background: var(--g-bg);
+	border-top: 2px solid var(--g-ink);
+}
+
+.content-page__body ul:not([class]) > li,
+.content-page__body ul.wp-block-list > li {
+	position: relative;
+	margin: 0;
+	padding: 10px 0 10px 22px;
+	line-height: 1.8;
+}
+
+.content-page__body ul:not([class]) > li + li,
+.content-page__body ul.wp-block-list > li + li {
+	border-top: 1px dashed var(--g-rule);
+}
+
+.content-page__body ul:not([class]) > li::before,
+.content-page__body ul.wp-block-list > li::before {
+	content: "";
+	position: absolute;
+	left: 2px;
+	top: calc(10px + 0.9em - 4px);
+	width: 8px;
+	height: 8px;
+	background: var(--g-gold);
+}
+
+/* --- 番号付き: 黒タイルに金の数字 --- */
+.content-page__body ol:not([class]),
+.content-page__body ol.wp-block-list {
+	list-style: none;
+	counter-reset: geed-ol;
+	margin: 24px 0 28px;
+	padding: 0;
+	border-top: 2px solid var(--g-ink);
+}
+
+.content-page__body ol:not([class]) > li,
+.content-page__body ol.wp-block-list > li {
+	counter-increment: geed-ol;
+	position: relative;
+	margin: 0;
+	padding: 14px 4px 14px 48px;
+	border-bottom: 1px solid var(--g-rule);
+	line-height: 1.8;
+}
+
+.content-page__body ol:not([class]) > li::before,
+.content-page__body ol.wp-block-list > li::before {
+	content: counter(geed-ol);
+	position: absolute;
+	left: 0;
+	top: 14px;
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--g-ink);
+	color: var(--g-gold);
+	font-family: var(--g-font-en);
+	font-size: 19px;
+	font-weight: 600;
+	line-height: 1;
+}
+
+/* 入れ子のリストは装飾を軽く */
+.content-page__body li ul,
+.content-page__body li ol {
+	margin: 8px 0 0;
+	padding: 0 0 0 4px;
+	background: none;
+	border: 0;
+}
+
+/* --- 表 --- */
+.content-page__body .table-wrap,
+.content-page__body .wp-block-table {
+	margin: 28px 0 32px;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	border-top: 2px solid var(--g-ink);
+	border-bottom: 2px solid var(--g-ink);
+	/* 横に溢れたとき右端に影を出し、続きがあると分かるようにする */
+	background:
+		linear-gradient(to right, #fff 30%, rgba(255, 255, 255, 0)) left / 24px 100% no-repeat local,
+		linear-gradient(to left, #fff 30%, rgba(255, 255, 255, 0)) right / 24px 100% no-repeat local,
+		radial-gradient(farthest-side at 100% 50%, rgba(35, 32, 31, 0.18), transparent) right / 10px 100% no-repeat scroll;
+}
+
+.content-page__body table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 15px;
+	line-height: 1.65;
+	font-variant-numeric: tabular-nums;
+}
+
+.content-page__body .table-wrap table,
+.content-page__body .wp-block-table table {
+	min-width: 520px;
+}
+
+.content-page__body thead th {
+	padding: 12px 14px;
+	background: var(--g-ink);
+	color: var(--g-on-dark);
+	font-weight: 700;
+	text-align: left;
+	white-space: nowrap;
+	border: 0;
+}
+
+.content-page__body td,
+.content-page__body tbody th {
+	padding: 13px 14px;
+	border: 0;
+	border-top: 1px solid var(--g-rule);
+	vertical-align: top;
+	text-align: left;
+}
+
+.content-page__body tbody tr:first-child td,
+.content-page__body tbody tr:first-child th {
+	border-top: 0;
+}
+
+/* 1列目は行の見出し */
+.content-page__body tbody td:first-child,
+.content-page__body tbody th:first-child {
+	background: var(--g-bg);
+	font-weight: 700;
+	color: var(--g-ink);
+	white-space: nowrap;
+}
+
+.content-page__body thead th:first-child {
+	border-right: 1px solid rgba(250, 248, 244, 0.18);
+}
+
+.content-page__body tbody tr:hover td {
+	background-color: #fdfbf7;
+}
+
+.content-page__body tbody tr:hover td:first-child {
+	background-color: #f4efe6;
+}
+
+/* 2列の表は「項目｜内容」の一覧として、スマホでも横スクロールさせない */
+.content-page__body .table-wrap:has(thead th:nth-child(2):last-child) table,
+.content-page__body .wp-block-table:has(tr > :nth-child(2):last-child) table {
+	min-width: 0;
+}
+
+.content-page__body .table-wrap:has(thead th:nth-child(2):last-child) tbody td:first-child {
+	width: 34%;
+	white-space: normal;
+}
+
+/* --- 引用・補足 --- */
+.content-page__body blockquote {
+	position: relative;
+	margin: 28px 0;
+	padding: 22px 22px 22px 56px;
+	background: var(--g-bg);
+	border: 0;
+	border-left: 4px solid var(--g-gold);
+	color: var(--g-ink);
+	font-style: normal;
+}
+
+.content-page__body blockquote::before {
+	content: "\201C";
+	position: absolute;
+	left: 16px;
+	top: 6px;
+	font-family: Georgia, "Noto Serif JP", serif;
+	font-size: 52px;
+	line-height: 1;
+	color: var(--g-gold);
+}
+
+.content-page__body blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+	.content-page__body ul:not([class]),
+	.content-page__body ul.wp-block-list {
+		padding: 20px 28px;
+	}
+
+	.content-page__body table {
+		font-size: 16px;
+	}
+
+	.content-page__body thead th,
+	.content-page__body td,
+	.content-page__body tbody th {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+}

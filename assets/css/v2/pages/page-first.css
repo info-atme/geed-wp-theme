@@ -1,0 +1,6 @@
+.p-first-check h3 {
+	margin-top: 32px;
+}
+.p-first-check h3:first-child {
+	margin-top: 0;
+}

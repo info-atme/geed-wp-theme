@@ -1,0 +1,45 @@
+/**
+ * v2 の枠組み: 幅・セクション余白・面の色
+ */
+.g-container {
+	width: 100%;
+	max-width: calc(var(--g-max) + var(--g-gutter) * 2);
+	margin-inline: auto;
+	padding-inline: var(--g-gutter);
+}
+
+.g-section {
+	padding-block: var(--g-section-y);
+}
+
+.g-section--surface {
+	background: var(--g-surface);
+}
+
+.g-section--dark {
+	color: var(--g-on-dark);
+	background: var(--g-ink);
+}
+
+.g-section__head {
+	margin-bottom: 16px;
+}
+
+.g-section__head p {
+	margin-top: 8px;
+	color: var(--g-muted);
+}
+
+.g-section--dark .g-section__head p {
+	color: var(--g-muted-on-dark);
+}
+
+@media (min-width: 768px) {
+	.g-section__head {
+		margin-bottom: 24px;
+	}
+}
+
+html {
+	scroll-padding-top: var(--g-header-h);
+}

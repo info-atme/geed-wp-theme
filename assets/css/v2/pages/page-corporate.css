@@ -1,0 +1,5 @@
+@media (min-width: 700px) {
+	.p-corp-wide div {
+		grid-template-columns: 13em minmax(0, 1fr);
+	}
+}

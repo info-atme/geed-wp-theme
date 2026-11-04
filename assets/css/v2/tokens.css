@@ -1,0 +1,48 @@
+/**
+ * v2 デザイントークン（research/renewal_spec.md §1・§4）
+ * 墨はヒーローとフッターだけ。それ以外は明るい面。
+ */
+:root {
+	--g-bg: #faf8f4;
+	--g-surface: #ffffff;
+	--g-ink: #23201f;
+	--g-muted: #5f5953;
+	--g-on-dark: #faf8f4;
+	--g-muted-on-dark: #c9c2b8;
+	--g-rule: #e6e1d9;
+	--g-control-border: #8a8278;
+	--g-gold: #c8a96e;       /* 面に使う。文字は墨 */
+	--g-gold-text: #8a6a2f;  /* 明るい面の上の金文字 */
+	--g-line: #037f37;       /* 白文字で4.5:1以上 */
+
+	--g-font: "Noto Sans JP", system-ui, -apple-system, sans-serif;
+	--g-font-en: "Barlow Condensed", var(--g-font); /* 英字・数字の見出しだけ（2026-10-04 決定） */
+
+	--g-fs-body: 16px;
+	--g-fs-small: 14px;
+	--g-fs-h1: 30px;
+	--g-fs-h2: 24px;
+	--g-fs-h3: 18px;
+
+	--g-cta-h: 64px;
+	--g-section-y: 24px;
+	--g-gutter: 16px;
+	--g-max: 1120px;
+	--g-radius: 2px;
+
+	--g-header-h: 60px;
+	--g-fixbar-h: 56px;
+
+	--g-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (min-width: 768px) {
+	:root {
+		--g-fs-h1: 44px;
+		--g-fs-h2: 30px;
+		--g-fs-h3: 20px;
+		--g-section-y: 40px;
+		--g-gutter: 32px;
+		--g-header-h: 72px;
+	}
+}

@@ -1,0 +1,513 @@
+/**
+ * v2 の部品。header/footer/固定バーは全ページ共通なので body.geed-v2 に依存させない
+ * （旧 main.css の地の文の上でも同じ見た目になるよう、文字サイズ・行間は部品側で持つ）。
+ */
+
+/* ---------- ボタン ---------- */
+.g-btn {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: var(--g-cta-h);
+	padding: 8px 20px;
+	border: 0;
+	border-radius: var(--g-radius);
+	font-family: var(--g-font);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.3;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	transition: filter 120ms var(--g-ease), transform 80ms var(--g-ease);
+}
+
+.g-btn small {
+	margin-top: 2px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.g-btn:hover {
+	filter: brightness(1.06);
+}
+
+.g-btn:active {
+	transform: translateY(1px);
+}
+
+.g-btn--form {
+	color: var(--g-ink);
+	background: var(--g-gold);
+}
+
+.g-btn--line {
+	color: #fff;
+	background: var(--g-line);
+}
+
+.g-btn--sm {
+	min-height: 44px;
+	padding: 4px 14px;
+	font-size: 14px;
+}
+
+.g-btn--sm small {
+	margin-top: 0;
+	font-size: 11px;
+}
+
+.g-btn:focus-visible {
+	outline: 3px solid var(--g-gold-text);
+	outline-offset: 2px;
+}
+
+/* ---------- 申込ボタン2本（template-parts/trial-actions.php） ---------- */
+.g-actions {
+	display: grid;
+	gap: 12px;
+}
+
+.g-actions__note {
+	margin: 12px 0 0;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+	line-height: 1.6;
+}
+
+.g-section--dark .g-actions__note,
+.g-footer .g-actions__note {
+	color: var(--g-muted-on-dark);
+}
+
+/* 申込ボタンは押せる面を大きく: 高さ64px・左寄せの文言・右端に矢印（hoverで矢印が進む） */
+.g-actions .g-btn {
+	position: relative;
+	align-items: flex-start;
+	width: 100%;
+	padding: 12px 56px 12px 20px;
+	font-size: 17px;
+	text-align: left;
+	box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.16);
+}
+
+.g-actions .g-btn small {
+	font-size: 13px;
+	opacity: 0.9;
+}
+
+.g-actions .g-btn::after {
+	content: "→";
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	font-size: 22px;
+	line-height: 1;
+	transform: translateY(-50%);
+	transition: transform 120ms var(--g-ease);
+}
+
+.g-actions .g-btn:hover::after {
+	transform: translate(4px, -50%);
+}
+
+@media (min-width: 768px) {
+	.g-actions {
+		grid-template-columns: repeat(2, minmax(0, 300px));
+	}
+}
+
+/* ---------- ヘッダー ---------- */
+.g-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	background: var(--g-surface);
+	border-bottom: 1px solid var(--g-rule);
+	font-family: var(--g-font);
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+.g-header__inner {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	min-height: var(--g-header-h);
+}
+
+.g-header__logo img {
+	display: block;
+	width: 84px;
+	height: auto;
+}
+
+.g-nav {
+	display: none;
+}
+
+.g-nav ul {
+	display: flex;
+	gap: 20px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.g-nav a {
+	color: var(--g-ink);
+	font-weight: 500;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.g-nav a:hover {
+	color: var(--g-gold-text);
+}
+
+.g-header__cta {
+	display: none;
+	gap: 8px;
+	margin-left: auto;
+}
+
+.g-menu-btn {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	width: 48px;
+	height: 48px;
+	margin-left: auto;
+	padding: 0;
+	border: 1px solid var(--g-rule);
+	border-radius: var(--g-radius);
+	color: var(--g-ink);
+	background: var(--g-surface);
+	font-family: var(--g-font);
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.g-menu-btn__bars,
+.g-menu-btn__bars::before,
+.g-menu-btn__bars::after {
+	display: block;
+	width: 18px;
+	height: 2px;
+	background: currentColor;
+	transition: transform 160ms var(--g-ease), opacity 160ms var(--g-ease);
+}
+
+.g-menu-btn__bars {
+	position: relative;
+	margin-bottom: 4px;
+}
+
+.g-menu-btn__bars::before,
+.g-menu-btn__bars::after {
+	position: absolute;
+	left: 0;
+	content: "";
+}
+
+.g-menu-btn__bars::before { top: -6px; }
+.g-menu-btn__bars::after { top: 6px; }
+
+.g-menu-btn[aria-expanded="true"] .g-menu-btn__bars { background: transparent; }
+.g-menu-btn[aria-expanded="true"] .g-menu-btn__bars::before { transform: translateY(6px) rotate(45deg); }
+.g-menu-btn[aria-expanded="true"] .g-menu-btn__bars::after { transform: translateY(-6px) rotate(-45deg); }
+
+@media (min-width: 768px) {
+	.g-header__logo img { width: 104px; }
+}
+
+@media (min-width: 1100px) {
+	.g-nav { display: block; }
+	.g-header__cta { display: flex; }
+
+	/* PCはヘッダー右端に申込ボタンを面で固定（ヘッダーの高さいっぱい・角なし） */
+	.g-header__inner {
+		max-width: none;
+		padding-right: 0;
+	}
+
+	.g-header__cta {
+		align-self: stretch;
+		gap: 0;
+	}
+
+	.g-header__cta .g-btn {
+		min-height: var(--g-header-h);
+		padding-inline: 24px;
+		border-radius: 0;
+		font-size: 15px;
+	}
+	.g-menu-btn { display: none; }
+}
+
+/* ---------- SPメニュー ---------- */
+.g-drawer {
+	position: fixed;
+	inset: var(--g-header-h) 0 0;
+	z-index: 45;
+	overflow-y: auto;
+	padding: 8px var(--g-gutter) calc(24px + env(safe-area-inset-bottom));
+	background: var(--g-surface);
+	font-family: var(--g-font);
+	font-size: 16px;
+	line-height: 1.5;
+	visibility: hidden;
+	opacity: 0;
+	transform: translateY(-8px);
+	transition: opacity 160ms var(--g-ease), transform 160ms var(--g-ease), visibility 0s linear 160ms;
+}
+
+.g-drawer.is-open {
+	visibility: visible;
+	opacity: 1;
+	transform: none;
+	transition: opacity 160ms var(--g-ease), transform 160ms var(--g-ease), visibility 0s;
+}
+
+.g-drawer ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.g-drawer li a {
+	display: block;
+	padding: 14px 0;
+	border-bottom: 1px solid var(--g-rule);
+	color: var(--g-ink);
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.g-drawer .g-actions {
+	margin-top: 24px;
+}
+
+body.is-menu-open {
+	overflow: hidden;
+}
+
+@media (min-width: 1100px) {
+	.g-drawer { display: none; }
+}
+
+/* ---------- フッター（墨） ---------- */
+.g-footer {
+	color: var(--g-on-dark);
+	background: var(--g-ink);
+	font-family: var(--g-font);
+	font-size: 15px;
+	line-height: 1.8;
+}
+
+.g-footer a {
+	color: inherit;
+}
+
+.g-footer__apply {
+	padding-block: var(--g-section-y);
+	border-bottom: 1px solid rgba(250, 248, 244, 0.16);
+}
+
+.g-footer__apply h2 {
+	margin: 0 0 8px;
+	font-size: var(--g-fs-h2);
+	line-height: 1.4;
+}
+
+.g-footer__apply p {
+	margin: 0 0 16px;
+	color: var(--g-muted-on-dark);
+}
+
+.g-footer__main {
+	display: grid;
+	gap: 32px;
+	padding-block: 40px;
+}
+
+.g-footer__brand img {
+	width: 104px;
+	height: auto;
+	margin-bottom: 16px;
+}
+
+.g-footer__brand p,
+.g-footer__brand address {
+	margin: 0;
+	color: var(--g-muted-on-dark);
+	font-style: normal;
+}
+
+.g-footer h2.g-footer__label {
+	margin: 0 0 8px;
+	color: var(--g-muted-on-dark);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+}
+
+.g-footer__menu ul {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 4px 16px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav.g-footer__menu ul {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.g-footer__menu a {
+	display: inline-block;
+	padding: 6px 0;
+	text-decoration: none;
+}
+
+.g-footer__menu a:hover,
+.g-footer__brand a:hover {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.g-footer__bottom {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 8px;
+	padding-block: 16px;
+	border-top: 1px solid rgba(250, 248, 244, 0.16);
+	color: var(--g-muted-on-dark);
+	font-size: 12px;
+}
+
+.g-footer__bottom p {
+	margin: 0;
+}
+
+@media (min-width: 768px) {
+	.g-footer__main {
+		grid-template-columns: 1.2fr 1.4fr 1fr;
+		padding-block: 56px;
+	}
+}
+
+/* ---------- SP固定バー（PCでは出さない） ---------- */
+.g-fixbar {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 40;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	padding-bottom: env(safe-area-inset-bottom);
+	background: var(--g-surface);
+	box-shadow: 0 -1px 0 var(--g-rule);
+}
+
+.g-fixbar .g-btn {
+	min-height: var(--g-fixbar-h);
+	border-radius: 0;
+	font-size: 15px;
+}
+
+body.has-fixbar .g-footer {
+	padding-bottom: calc(var(--g-fixbar-h) + env(safe-area-inset-bottom));
+}
+
+body.is-menu-open .g-fixbar {
+	display: none;
+}
+
+@media (min-width: 1100px) {
+	.g-fixbar { display: none; }
+	body.has-fixbar .g-footer { padding-bottom: 0; }
+}
+
+/* ---------- 料金表（template-parts/price-table.php） ---------- */
+.g-price {
+	width: 100%;
+	border-collapse: collapse;
+	background: var(--g-surface);
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.g-price caption {
+	padding-bottom: 8px;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+	text-align: left;
+}
+
+.g-price th,
+.g-price td {
+	padding: 14px 12px;
+	border-bottom: 1px solid var(--g-rule);
+	text-align: left;
+	vertical-align: middle;
+}
+
+.g-price th {
+	font-weight: 700;
+}
+
+.g-price th small {
+	display: block;
+	color: var(--g-muted);
+	font-weight: 400;
+}
+
+.g-price td {
+	text-align: right;
+	white-space: nowrap;
+}
+
+.g-price td strong {
+	font-size: 20px;
+}
+
+.g-price td small {
+	margin-left: 4px;
+	color: var(--g-muted);
+}
+
+.g-price tr.is-main th,
+.g-price tr.is-main td {
+	background: #f6efe2;
+}
+
+.g-price tr.is-main th {
+	border-left: 4px solid var(--g-gold);
+}
+
+.g-price__tag {
+	display: block;
+	color: var(--g-gold-text);
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.g-price__tag::before {
+	content: "— ";
+}
+
+/* reCAPTCHA バッジを SP固定バーの上へ逃がす */
+@media (max-width: 1099px) {
+	body.has-fixbar .grecaptcha-badge {
+		bottom: calc(var(--g-fixbar-h) + env(safe-area-inset-bottom) + 14px) !important; /* Google側のインライン style を上書きするため */
+	}
+}

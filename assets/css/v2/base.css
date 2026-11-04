@@ -1,0 +1,48 @@
+/**
+ * v2 の地の文。body.geed-v2 のページだけに効く（移行が済んだページから順に付ける）。
+ */
+body.geed-v2 {
+	color: var(--g-ink);
+	background: var(--g-bg);
+	font-family: var(--g-font);
+	font-size: var(--g-fs-body);
+	line-height: 1.8;
+	-webkit-text-size-adjust: 100%;
+}
+
+body.geed-v2 h1,
+body.geed-v2 h2,
+body.geed-v2 h3 {
+	margin: 0;
+	font-family: var(--g-font);
+	font-weight: 700;
+	line-height: 1.4;
+	letter-spacing: 0.02em;
+}
+
+body.geed-v2 h1 { font-size: var(--g-fs-h1); }
+body.geed-v2 h2 { font-size: var(--g-fs-h2); }
+body.geed-v2 h3 { font-size: var(--g-fs-h3); }
+
+body.geed-v2 p {
+	margin: 0;
+}
+
+body.geed-v2 p + p {
+	margin-top: 1em;
+}
+
+body.geed-v2 .site-main a:not([class]) {
+	color: var(--g-gold-text);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+body.geed-v2 small {
+	font-size: var(--g-fs-small);
+}
+
+body.geed-v2 :focus-visible {
+	outline: 3px solid var(--g-gold-text);
+	outline-offset: 2px;
+}

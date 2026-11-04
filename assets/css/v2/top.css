@@ -1,0 +1,438 @@
+/**
+ * v2 TOP（front-page.php）。部品は components.css、ここはTOPだけの組み方。
+ * 共通のセクション部品は sections.css。ここはTOPだけのもの（ヒーロー・キャンペーン帯・口コミ・スタッフ）。
+ * 墨はヒーローだけ（renewal_spec.md §1）。
+ */
+
+/* ---------- ヒーロー（墨）: 左にロゴ・コピー・申込、右に人物の実写。SPは写真が上 ---------- */
+.t-hero {
+	color: var(--g-on-dark);
+	background: var(--g-ink);
+}
+
+.t-hero__grid {
+	display: grid;
+}
+
+.t-hero__photo,
+.t-hero__photo img {
+	display: block;
+	width: 100%;
+}
+
+.t-hero__photo img {
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
+
+.t-hero__panel {
+	padding: 24px var(--g-gutter) 32px;
+}
+
+.t-hero__mark {
+	width: 112px;
+	color: var(--g-on-dark);
+}
+
+.t-hero__mark svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.t-hero__kicker {
+	display: grid;
+	gap: 4px;
+	margin-top: 20px;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.t-hero__kicker span {
+	color: var(--g-muted-on-dark);
+	font-family: var(--g-font-en);
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+}
+
+.t-hero h1 {
+	margin-top: 12px;
+}
+
+.t-hero__offer {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	width: fit-content;
+	margin-top: 16px;
+	padding-right: 14px;
+	border: 1px solid var(--g-gold);
+	font-weight: 700;
+	line-height: 1;
+}
+
+.t-hero__offer span {
+	padding: 10px 14px;
+	color: var(--g-ink);
+	background: var(--g-gold);
+}
+
+.t-hero__lead {
+	margin-top: 16px;
+	color: var(--g-muted-on-dark);
+	font-size: 17px;
+}
+
+.t-hero__cta {
+	margin-top: 24px;
+}
+
+.t-hero .g-actions__note {
+	color: var(--g-muted-on-dark);
+}
+
+.t-hero__facts {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin-block: 0;
+	padding-block: 20px 28px;
+	border-top: 1px solid rgba(250, 248, 244, 0.2);
+}
+
+.t-hero__facts div {
+	padding-right: 8px;
+}
+
+.t-hero__facts div + div {
+	padding-left: 12px;
+	border-left: 1px solid rgba(250, 248, 244, 0.2);
+}
+
+.t-hero__facts dt {
+	color: var(--g-muted-on-dark);
+	font-size: 11px;
+	line-height: 1.4;
+}
+
+.t-hero__facts dd {
+	margin: 6px 0 0;
+	font-size: 13px;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.t-hero__facts b {
+	margin-right: 2px;
+	font-family: var(--g-font-en);
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 1;
+}
+
+@media (min-width: 900px) {
+	.t-hero__grid {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+		min-height: min(calc(100svh - var(--g-header-h) - 120px), 760px);
+	}
+
+	.t-hero__photo {
+		order: 2;
+		height: 100%;
+	}
+
+	.t-hero__photo img {
+		height: 100%;
+		aspect-ratio: auto;
+		object-position: 60% 40%;
+	}
+
+	/* 左端はコンテナの左端にそろえる */
+	.t-hero__panel {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 48px 56px 48px max(var(--g-gutter), calc((100vw - var(--g-max)) / 2));
+	}
+
+	.t-hero__mark {
+		width: 168px;
+	}
+
+	/* 「ジムが初めての方へ。」(10字)を1行に収める: パネルの中身の幅 ÷ 10.5 */
+	body.geed-v2 .t-hero h1 {
+		font-size: min(44px, calc((100vw * 5 / 11 - max(var(--g-gutter), (100vw - var(--g-max)) / 2) - 56px) / 10.5));
+	}
+
+	.t-hero__kicker {
+		margin-top: 32px;
+		font-size: 17px;
+	}
+
+	.t-hero__kicker span {
+		font-size: 14px;
+	}
+
+	.t-hero__cta .g-actions {
+		grid-template-columns: minmax(0, 340px);
+	}
+
+	.t-hero__facts {
+		padding-block: 28px 40px;
+	}
+
+	.t-hero__facts div + div {
+		padding-left: 32px;
+	}
+
+	.t-hero__facts dt {
+		font-size: 14px;
+	}
+
+	.t-hero__facts dd {
+		font-size: 16px;
+	}
+
+	.t-hero__facts b {
+		font-size: 48px;
+	}
+}
+
+/* ---------- キャンペーン（ヒーロー直下・管理画面で設定） ---------- */
+.t-cp {
+	padding-block: 32px;
+	background: var(--g-surface);
+	border-bottom: 1px solid var(--g-rule);
+}
+
+.t-cp__inner {
+	display: grid;
+	gap: 20px;
+}
+
+.t-cp__image {
+	margin: 0;
+}
+
+.t-cp__image img {
+	width: 100%;
+	height: auto;
+}
+
+.t-cp__label {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 16px;
+	font-size: var(--g-fs-small);
+	line-height: 1.4;
+}
+
+.t-cp__label span {
+	padding: 6px 10px;
+	color: var(--g-ink);
+	background: var(--g-gold);
+	font-family: var(--g-font-en);
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	line-height: 1;
+}
+
+.t-cp__label b {
+	color: var(--g-ink);
+}
+
+.t-cp h2 {
+	margin-top: 12px;
+}
+
+.t-cp__offers {
+	display: grid;
+	margin: 16px 0 0;
+	border-top: 2px solid var(--g-ink);
+}
+
+.t-cp__offers div {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 16px;
+	padding-block: 12px;
+	border-bottom: 1px solid var(--g-rule);
+}
+
+.t-cp__offers dt {
+	font-weight: 700;
+}
+
+.t-cp__offers dd {
+	margin: 0;
+	color: var(--g-gold-text);
+	font-size: 26px;
+	font-weight: 700;
+	line-height: 1.2;
+	white-space: nowrap;
+}
+
+.t-cp__note {
+	margin-top: 12px;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+}
+
+@media (min-width: 900px) {
+	.t-cp {
+		padding-block: 56px;
+	}
+
+	.t-cp__inner.has-image {
+		grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+		gap: 64px;
+		align-items: center;
+	}
+
+	.t-cp__offers {
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		column-gap: 32px;
+	}
+
+	.t-cp__offers dd {
+		font-size: 32px;
+	}
+}
+
+/* ---------- 01 料金 ---------- */
+.t-price__notes {
+	margin-top: 32px;
+}
+
+.t-join {
+	padding-top: 16px;
+	border-top: 1px solid var(--g-control-border);
+}
+
+.t-join h3 {
+	font-size: 17px;
+}
+
+.t-join ul {
+	margin: 8px 0 0;
+	padding-left: 1.2em;
+}
+
+.t-join p {
+	margin-top: 12px;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+}
+
+/* ---------- 02 口コミ ---------- */
+.t-score {
+	display: flex;
+	align-items: flex-end;
+	gap: 16px;
+	margin-bottom: 24px;
+}
+
+.t-score b {
+	font-family: var(--g-font-en);
+	font-size: 88px;
+	font-weight: 600;
+	line-height: 0.8;
+}
+
+.t-score span {
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+	line-height: 1.5;
+}
+
+.t-quotes {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.t-quotes li {
+	padding-block: 20px;
+	border-top: 1px solid var(--g-rule);
+}
+
+.t-quotes blockquote {
+	margin: 0;
+	font-size: 17px;
+}
+
+.t-quotes p {
+	margin-top: 8px;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+}
+
+.t-quotes p::before {
+	content: "— ";
+}
+
+@media (min-width: 900px) {
+	.t-score b {
+		font-size: 136px;
+	}
+
+	.t-quotes blockquote {
+		font-size: 18px;
+	}
+}
+
+/* ---------- 03 スタッフ ---------- */
+.t-staff {
+	display: grid;
+	gap: 20px;
+}
+
+.t-staff__photo {
+	margin: 0;
+}
+
+.t-staff__photo img {
+	width: 100%;
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+}
+
+.t-staff__role {
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+}
+
+.t-staff__text h3 {
+	margin-bottom: 12px;
+	font-size: 24px;
+}
+
+.t-staff__others {
+	display: flex;
+	gap: 40px;
+	margin: 32px 0 0;
+	padding-top: 16px;
+	border-top: 1px solid var(--g-rule);
+}
+
+.t-staff__others dt {
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+}
+
+.t-staff__others dd {
+	margin: 0;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+@media (min-width: 900px) {
+	.t-staff {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+		gap: 40px;
+		align-items: end;
+	}
+}

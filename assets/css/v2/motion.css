@@ -1,0 +1,40 @@
+/**
+ * v2 の動き（renewal_spec.md §3）。写真だけ 8px 持ち上げて出す。1回だけ・JSが有効なときだけ。
+ */
+.js-motion [data-reveal] {
+	opacity: 0;
+	transform: translateY(8px);
+	transition: opacity 280ms var(--g-ease), transform 280ms var(--g-ease);
+}
+
+.js-motion [data-reveal].is-shown {
+	opacity: 1;
+	transform: none;
+}
+
+/* 写真が上から下へ開くように出る（data-reveal="clip"） */
+.js-motion [data-reveal="clip"] {
+	opacity: 1;
+	transform: none;
+	clip-path: inset(0 0 100% 0);
+	transition: clip-path 900ms var(--g-ease);
+}
+
+.js-motion [data-reveal="clip"].is-shown {
+	clip-path: inset(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0s !important; /* reduced-motion は全停止（例外的に !important） */
+		animation-duration: 0s !important;
+	}
+
+	.js-motion [data-reveal] {
+		opacity: 1;
+		transform: none;
+		clip-path: none;
+	}
+}

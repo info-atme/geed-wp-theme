@@ -1,0 +1,156 @@
+/* お問い合わせ（page-contact.php）: フォームの見た目を v2 に揃える。name/id/JSフックは変えない */
+.contact-form {
+	max-width: 720px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+.contact-form__row {
+	margin-bottom: 24px;
+}
+
+.contact-form__row label {
+	color: var(--g-ink);
+	font-size: var(--g-fs-small);
+}
+
+.contact-form__req,
+.contact-form__opt {
+	padding: 0;
+	border-radius: 0;
+	background: transparent;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.contact-form__req {
+	color: #a8324f;
+}
+
+.contact-form__opt {
+	color: var(--g-muted);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form input[type="number"],
+.contact-form input[type="date"],
+.contact-form select,
+.contact-form textarea {
+	min-height: 48px;
+	padding: 12px 14px;
+	border: 1px solid var(--g-control-border);
+	border-radius: var(--g-radius);
+	background: var(--g-bg);
+	color: var(--g-ink);
+	font-size: 16px;
+}
+
+.contact-form input:focus-visible,
+.contact-form select:focus-visible,
+.contact-form textarea:focus-visible {
+	border-color: var(--g-ink);
+	outline: 3px solid var(--g-gold-text);
+	outline-offset: 1px;
+	box-shadow: none;
+}
+
+.contact-form__row--datetime {
+	padding: 16px 0 0;
+	border: 0;
+	border-top: 1px solid var(--g-rule);
+	border-radius: 0;
+	background: transparent;
+}
+
+.contact-form__datetime small {
+	color: var(--g-muted);
+	font-size: 12px;
+}
+
+.contact-form .contact-form__note {
+	margin: 8px 0 32px;
+}
+
+.contact-form__hint,
+.contact-form__note {
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+}
+
+.contact-form .contact-form__lead {
+	margin: 8px 0 32px;
+	padding: 16px 20px;
+	border-left: 4px solid var(--g-gold);
+	border-radius: 0;
+	background: var(--g-bg);
+	font-size: var(--g-fs-small);
+}
+
+.contact-form__error {
+	color: #a8324f;
+	font-size: var(--g-fs-small);
+}
+
+.contact-form [aria-invalid="true"] {
+	border-color: #a8324f;
+	background: var(--g-bg);
+}
+
+.contact-form__submit {
+	text-align: left;
+}
+
+.contact-form__submit .g-btn {
+	min-width: 240px;
+}
+
+.contact-form__submit .g-btn[disabled] {
+	opacity: 0.6;
+	cursor: wait;
+}
+
+.form-success,
+.form-error {
+	margin-top: 0;
+	margin-bottom: 32px;
+	border-radius: 0;
+	color: var(--g-ink);
+}
+
+.form-success {
+	border: 0;
+	border-left: 4px solid var(--g-line);
+	background: var(--g-surface);
+}
+
+.form-success h2 {
+	font-family: var(--g-font);
+	color: var(--g-ink);
+}
+
+.form-error {
+	border: 0;
+	border-left: 4px solid #a8324f;
+	background: var(--g-surface);
+}
+
+.form-success a,
+.form-error a {
+	color: var(--g-gold-text);
+}
+
+@media (max-width: 767px) {
+	.contact-form {
+		padding: 0;
+	}
+
+	.contact-form__submit .g-btn {
+		width: 100%;
+	}
+}

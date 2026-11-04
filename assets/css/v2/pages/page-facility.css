@@ -1,0 +1,64 @@
+.p-facility-media li > div h3 small {
+	display: block;
+	margin-top: 4px;
+	color: var(--g-muted);
+	font-size: var(--g-fs-small);
+	font-weight: 400;
+}
+
+.p-facility-media .g-list {
+	margin-top: 12px;
+}
+
+.p-facility-crowd div {
+	grid-template-columns: 9em minmax(0, 1fr);
+	align-items: baseline;
+}
+
+.p-facility-crowd dt {
+	font-family: var(--g-font-en);
+	font-size: 22px;
+	color: var(--g-ink);
+}
+
+.p-facility-crowd dd b {
+	display: block;
+	margin-bottom: 4px;
+}
+
+.p-facility-crowd--high dd b {
+	color: var(--g-gold-text);
+}
+
+@media (max-width: 480px) {
+	.p-facility-crowd div {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 4px;
+	}
+}
+
+.p-facility-all {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 32px 16px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.p-facility-all img {
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: cover;
+	background: var(--g-surface);
+}
+
+.p-facility-all .g-gallery__cap {
+	margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+	.p-facility-all {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}

@@ -1,0 +1,710 @@
+/* ==========================================================================
+   記事内の図解（HTML 版）: 原稿の [[FIG 名前]] → content/tools/fig_html.py
+   画像版（tools/figs.py）と同じ語彙。文字は本文として検索・AI に読まれる
+   記事（.content-page__body）とマシン紹介（.g-prose）の両方で使うので、投稿ページ全部で読む
+   ========================================================================== */
+.gfig {
+	--gfig-gold-bg: #f6efe1;
+	--gfig-ng: #a8473a;
+	--gfig-ng-bg: #f8ebe8;
+	margin: 40px 0 44px;
+	padding: 0;
+	font-size: 15px;
+	line-height: 1.7;
+	color: var(--g-ink);
+	word-break: auto-phrase; /* 文節で折り返す（対応ブラウザのみ） */
+	line-break: strict;
+}
+
+:is(.content-page__body, .g-prose) .gfig p {
+	margin: 0;
+	line-height: inherit;
+}
+
+:is(.content-page__body, .g-prose) .gfig strong {
+	background: none;
+}
+
+.gfig ol,
+.gfig ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.gfig__ic {
+	flex: none;
+}
+
+.u-vh {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* 見出し: 金の線付き英字・タイトル・右上の要約数字・二重罫 */
+.gfig__head {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: end;
+	gap: 0 16px;
+	padding-bottom: 14px;
+	border-bottom: 4px solid var(--g-ink);
+	position: relative;
+	margin-bottom: 22px;
+}
+
+.gfig__head::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -9px;
+	height: 1px;
+	background: var(--g-ink);
+}
+
+:is(.content-page__body, .g-prose) .gfig__eb {
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 6px;
+	font-family: var(--g-font-en);
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.2em;
+	color: var(--g-gold-text);
+	line-height: 1.4;
+}
+
+.gfig__eb::before {
+	content: "";
+	width: 24px;
+	height: 2px;
+	background: var(--g-gold);
+}
+
+:is(.content-page__body, .g-prose) .gfig__title {
+	font-family: var(--font-serif, "Noto Serif JP", serif);
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1.45;
+	color: var(--g-ink);
+}
+
+.gfig__tl {
+	display: inline-block;
+	margin-right: 0.6em;
+}
+
+:is(.content-page__body, .g-prose) .gfig__meta {
+	text-align: right;
+	font-family: var(--g-font-en);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	color: var(--g-gold-text);
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.gfig__meta b {
+	display: block;
+	font-size: 40px;
+	font-weight: 600;
+	color: var(--g-ink);
+	letter-spacing: 0;
+	margin-bottom: 2px;
+}
+
+:is(.content-page__body, .g-prose) .gfig__sub {
+	grid-column: 1 / -1;
+	margin-top: 6px;
+	font-size: 14px;
+	color: var(--g-muted);
+}
+
+/* まとめ */
+:is(.content-page__body, .g-prose) .gfig__take {
+	display: flex;
+	margin-top: 22px;
+	background: var(--g-ink);
+	color: var(--g-on-dark);
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+.gfig__take-l {
+	flex: none;
+	display: flex;
+	align-items: center;
+	padding: 0 12px;
+	background: var(--g-gold);
+	color: var(--g-ink);
+	font-family: var(--g-font-en);
+	font-size: 12px;
+	letter-spacing: 0.18em;
+}
+
+.gfig__take-t {
+	padding: 14px 16px;
+}
+
+/* --- steps: スマホは縦のタイムライン --- */
+.gfig__step {
+	display: grid;
+	grid-template-columns: 52px 1fr;
+	gap: 0 14px;
+	position: relative;
+	padding-bottom: 20px;
+}
+
+.gfig__step:not(:last-child)::before {
+	content: "";
+	position: absolute;
+	left: 25px;
+	top: 46px;
+	bottom: 4px;
+	width: 2px;
+	background: repeating-linear-gradient(var(--g-gold) 0 6px, transparent 6px 11px);
+}
+
+.gfig__n {
+	font-family: var(--g-font-en);
+	font-size: 40px;
+	font-weight: 600;
+	line-height: 1;
+	text-align: center;
+	color: transparent;
+	-webkit-text-stroke: 1.5px var(--g-ink);
+}
+
+.gfig__step.is-main .gfig__n {
+	color: var(--g-gold);
+	-webkit-text-stroke: 0;
+}
+
+.gfig__body {
+	border-top: 2px solid var(--g-ink);
+	padding-top: 10px;
+	min-width: 0;
+}
+
+.gfig__step.is-main .gfig__body {
+	border-top-color: var(--g-gold);
+	background: var(--gfig-gold-bg);
+	padding: 10px 12px 12px;
+}
+
+.gfig__phase {
+	display: inline-block;
+	margin-bottom: 6px;
+	padding: 1px 8px;
+	border: 1px solid var(--g-gold);
+	font-size: 12px;
+	font-weight: 700;
+	color: var(--g-gold-text);
+	letter-spacing: 0.04em;
+}
+
+:is(.content-page__body, .g-prose) .gfig__st {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.45;
+}
+
+.gfig__tile {
+	flex: none;
+	width: 34px;
+	height: 34px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--g-ink);
+	color: var(--g-gold);
+}
+
+.gfig__tile .gfig__ic {
+	width: 20px;
+	height: 20px;
+}
+
+.gfig__step.is-main .gfig__tile {
+	background: var(--g-gold);
+	color: var(--g-ink);
+}
+
+:is(.content-page__body, .g-prose) .gfig__sd {
+	margin-top: 6px;
+	font-size: 14px;
+	color: #4a4542;
+}
+
+.gfig__dose {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 8px !important;
+}
+
+.gfig__dose li {
+	padding: 1px 10px;
+	border: 1.5px solid var(--g-ink);
+	font-size: 13px;
+	font-weight: 700;
+	background: #fff;
+}
+
+/* --- table --- */
+.gfig__tw {
+	overflow-x: auto;
+	border-bottom: 2px solid var(--g-ink);
+}
+
+:is(.content-page__body, .g-prose) .gfig__table {
+	min-width: 0;
+	font-size: 14px;
+}
+
+:is(.content-page__body, .g-prose) .gfig__table thead th {
+	text-align: center;
+	white-space: normal;
+	vertical-align: bottom;
+}
+
+:is(.content-page__body, .g-prose) .gfig__table thead th.is-hl {
+	background: var(--g-gold);
+	color: var(--g-ink);
+	box-shadow: 0 -6px 0 var(--g-gold);
+}
+
+.gfig__badge {
+	display: block;
+	font-size: 11px;
+	letter-spacing: 0.1em;
+}
+
+:is(.content-page__body, .g-prose) .gfig__table td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+:is(.content-page__body, .g-prose) .gfig__table td.is-hl {
+	background: var(--gfig-gold-bg);
+}
+
+:is(.content-page__body, .g-prose) .gfig__table td.is-big {
+	font-size: 17px;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+
+.gfig__table .gfig__ic {
+	color: var(--g-gold-text);
+	vertical-align: middle;
+}
+
+.gfig__no .gfig__ic {
+	color: #c9c2b9;
+}
+
+@media (max-width: 767px) {
+	:is(.content-page__body, .g-prose) .gfig__table {
+		font-size: 13px;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__table th,
+	:is(.content-page__body, .g-prose) .gfig__table td {
+		padding: 10px 6px;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__table td.is-big {
+		font-size: 15px;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__table tbody th {
+		white-space: normal;
+		min-width: 4.5em;
+	}
+}
+
+:is(.content-page__body, .g-prose) .gfig__fn {
+	margin-top: 8px;
+	font-size: 13px;
+	color: var(--g-muted);
+}
+
+/* --- dodont --- */
+.gfig__pair {
+	display: grid;
+	grid-template-columns: 26px 1fr;
+	gap: 0 10px;
+	padding: 14px 0;
+	border-bottom: 1px solid var(--g-rule);
+}
+
+.gfig__pair:first-child {
+	padding-top: 0;
+}
+
+.gfig__pn {
+	grid-row: span 3;
+	font-family: var(--g-font-en);
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 1;
+}
+
+:is(.content-page__body, .g-prose) .gfig__ok,
+:is(.content-page__body, .g-prose) .gfig__ng {
+	padding: 10px 12px;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.gfig__ok {
+	background: var(--gfig-gold-bg);
+	border-left: 3px solid var(--g-gold);
+}
+
+.gfig__ng {
+	background: var(--gfig-ng-bg);
+	border-left: 3px solid var(--gfig-ng);
+	color: #5a3a34;
+	margin-top: 6px !important;
+}
+
+:is(.content-page__body, .g-prose) .gfig__why {
+	margin-top: 8px;
+	font-size: 13px;
+	color: var(--g-muted);
+}
+
+.gfig__lb {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 2px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+}
+
+.gfig__ok .gfig__lb {
+	color: var(--g-gold-text);
+}
+
+.gfig__ng .gfig__lb {
+	color: var(--gfig-ng);
+}
+
+.gfig__why .gfig__lb {
+	display: inline-flex;
+	margin-right: 8px;
+	color: var(--g-gold-text);
+}
+
+/* --- week --- */
+.gfig__week {
+	display: grid;
+	grid-template-columns: repeat(7, minmax(0, 1fr));
+	gap: 4px;
+}
+
+.gfig__day {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	padding: 10px 2px 12px;
+	min-height: 150px;
+	text-align: center;
+	background: #f2f2f2;
+	color: var(--g-muted);
+}
+
+.gfig__day.is-train {
+	background: var(--g-ink);
+	color: #fff;
+}
+
+.gfig__day.is-train .gfig__ic {
+	color: var(--g-gold);
+}
+
+.gfig__day.is-light {
+	background: var(--gfig-gold-bg);
+	color: var(--g-ink);
+}
+
+.gfig__day.is-light .gfig__ic {
+	color: var(--g-gold-text);
+}
+
+.gfig__dl {
+	font-weight: 700;
+	font-size: 15px;
+}
+
+.gfig__dt {
+	writing-mode: vertical-rl;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+}
+
+:is(.content-page__body, .g-prose) .gfig__mix {
+	display: flex;
+	margin-top: 12px;
+	border: 2px solid var(--g-ink);
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.gfig__mix span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	padding: 8px 4px;
+	text-align: center;
+	min-width: 0;
+}
+
+.gfig__mix b {
+	font-family: var(--g-font-en);
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.gfig__mix .is-train {
+	background: var(--g-ink);
+	color: #fff;
+}
+
+.gfig__mix .is-light {
+	background: var(--gfig-gold-bg);
+}
+
+.gfig__mix .is-rest {
+	background: #f2f2f2;
+	color: var(--g-muted);
+}
+
+.gfig__notes {
+	margin-top: 14px !important;
+	display: grid;
+	gap: 6px;
+}
+
+.gfig__notes li {
+	display: flex;
+	gap: 10px;
+	font-size: 14px;
+}
+
+.gfig__notes .gfig__ic {
+	color: var(--g-gold-text);
+	margin-top: 3px;
+}
+
+/* --- route --- */
+.gfig__bar {
+	display: flex;
+	height: 18px;
+	border: 2px solid var(--g-ink);
+}
+
+:is(.content-page__body, .g-prose) .gfig__tot {
+	display: flex;
+	justify-content: space-between;
+	margin: 6px 0 16px;
+	font-size: 13px;
+	color: var(--g-muted);
+}
+
+.gfig__tot b {
+	font-family: var(--g-font-en);
+	font-size: 18px;
+	color: var(--g-ink);
+}
+
+.gfig__route {
+	display: grid;
+	gap: 10px;
+}
+
+.gfig__stop {
+	display: grid;
+	grid-template-columns: 52px 1fr;
+	gap: 12px;
+}
+
+.gfig__min {
+	font-size: 12px;
+	color: var(--g-muted);
+	text-align: center;
+}
+
+.gfig__min b {
+	display: block;
+	font-family: var(--g-font-en);
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--g-ink);
+}
+
+.gfig__stop .gfig__body {
+	border-top: 6px solid var(--c);
+	background: #faf8f4;
+	padding: 10px 12px 12px;
+}
+
+.gfig__stop .gfig__st .gfig__ic {
+	color: var(--g-gold-text);
+}
+
+/* --- PC --- */
+@media (min-width: 768px) {
+	.gfig {
+		font-size: 16px;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__title {
+		font-size: 23px;
+	}
+
+	.gfig__meta b {
+		font-size: 48px;
+	}
+
+	/* 手順は1行に「番号｜名前｜説明」 */
+	.gfig__step {
+		grid-template-columns: 64px 1fr;
+		padding-bottom: 14px;
+	}
+
+	.gfig__step:not(:last-child)::before {
+		left: 31px;
+		top: 50px;
+	}
+
+	.gfig__n {
+		font-size: 46px;
+	}
+
+	.gfig__step .gfig__body {
+		display: grid;
+		grid-template-columns: 230px 1fr;
+		gap: 4px 20px;
+		align-items: start;
+		padding: 12px 16px 12px;
+	}
+
+	.gfig__step.is-main .gfig__body {
+		padding: 12px 16px 12px;
+	}
+
+	.gfig__step .gfig__phase {
+		grid-column: 1 / -1;
+		justify-self: start;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__step .gfig__sd {
+		margin-top: 0;
+		padding-top: 6px;
+		font-size: 15px;
+	}
+
+	/* 名前は左列（2行分）、説明と回数は右列。ラベル（phase）があればその下から */
+	:is(.content-page__body, .g-prose) .gfig__step .gfig__st {
+		grid-column: 1;
+		grid-row: span 2;
+		align-self: start;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__step .gfig__sd {
+		grid-column: 2;
+	}
+
+	.gfig__dose {
+		grid-column: 2;
+		margin-top: 2px !important;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__table {
+		font-size: 15px;
+	}
+
+	/* 正誤は「番号｜正しい｜間違い｜理由」を1行に */
+	.gfig__pair {
+		grid-template-columns: 30px 1fr 1fr 0.85fr;
+		gap: 0 10px;
+		align-items: stretch;
+	}
+
+	.gfig__pn {
+		grid-row: auto;
+		padding-top: 8px;
+	}
+
+	.gfig__ng {
+		margin-top: 0 !important;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__why {
+		margin-top: 0;
+		padding: 10px 0 0;
+	}
+
+	.gfig__why .gfig__lb {
+		display: flex;
+	}
+
+	.gfig__day {
+		min-height: 0;
+	}
+
+	.gfig__dt {
+		writing-mode: horizontal-tb;
+	}
+
+	:is(.content-page__body, .g-prose) .gfig__mix {
+		font-size: 14px;
+	}
+
+	.gfig__route {
+		grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+	}
+
+	.gfig__stop {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto 1fr;
+		gap: 6px;
+	}
+
+	.gfig__min {
+		text-align: left;
+	}
+
+	.gfig__min b {
+		display: inline;
+		margin-right: 2px;
+	}
+
+	.gfig__stop .gfig__st {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+	}
+}
