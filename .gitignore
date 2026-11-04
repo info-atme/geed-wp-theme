@@ -1,0 +1,16 @@
+.DS_Store
+*.zip
+*.log
+node_modules/
+assets/img/
+screenshot.png
+*.mp4
+*.mov
+*.webm
+*.woff
+*.woff2
+*.ttf
+*.otf
+*.psd
+.env*
+deploy*.sh
